@@ -1,4 +1,5 @@
 import { useState } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 const empty = { patient_name: '', whatsapp_number: '', appointment_date: '', appointment_time: '' };
 
@@ -17,7 +18,7 @@ export default function AppointmentForm({ onSaved }) {
     setBusy(true);
     setMessage(null);
     try {
-      const res = await fetch('/api/appointments', {
+      const res = await fetch(`${API_BASE_URL}/appointments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

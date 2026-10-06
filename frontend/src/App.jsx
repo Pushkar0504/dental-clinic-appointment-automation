@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 import AppointmentForm from './components/AppointmentForm.jsx';
 import AppointmentTable from './components/AppointmentTable.jsx';
 
@@ -9,7 +10,7 @@ export default function App() {
 
   const load = useCallback(async () => {
     try {
-      const res = await fetch('/api/appointments');
+      const res = await fetch(`${API_BASE_URL}/appointments`);
       if (!res.ok) throw new Error();
       setAppointments(await res.json());
       setLoadError('');

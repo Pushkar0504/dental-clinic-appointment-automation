@@ -1,4 +1,5 @@
 import { useState } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -30,7 +31,7 @@ export default function AppointmentTable({ appointments, loading, onChanged }) {
     if (confirmText && !window.confirm(confirmText)) return;
     setError('');
     try {
-      const res = await fetch(`/api/appointments/${id}${path}`, { method });
+      const res = await fetch(`${API_BASE_URL}/appointments/${id}${path}`, { method });
       if (!res.ok) throw new Error();
       onChanged();
     } catch {
